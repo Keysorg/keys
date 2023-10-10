@@ -68,7 +68,7 @@ const Cart = () => {
       price: (verificationResponse.amount / 100).toFixed(2),
       currency: verificationResponse.currency,
       payment_option: verificationResponse.channel,
-      account: verificationResponse.customer.phone,
+      account: verificationResponse.metadata.phone,
       status: verificationResponse.status,
       paid_at: verificationResponse.paid_at,
       created_at: verificationResponse.created_at

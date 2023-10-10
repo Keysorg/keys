@@ -30,7 +30,7 @@ export const calculateTransactionData = (transactions: any) => {
     let prices: any = []
     transactions.map((transaction: any) => {
         allProducts.push(...transaction.products)
-        prices.push(transaction.price)
+        prices.push(parseInt(transaction.price))
     })
     totalPrice = sum(prices)
 

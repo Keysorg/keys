@@ -50,6 +50,7 @@ const Dashboard = () => {
         if (transactions) {
             setNumberOfTransactions(transactions.length)
             let { aggregatedProductData, aggregatedOrgData, trendData, totalPrice } = calculateTransactionData(transactions)
+            
             setPieData(aggregatedProductData)
             setOrgData(aggregatedOrgData)
             setTrendData(trendData)
