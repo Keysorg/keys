@@ -1,8 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+import { Box, Typography } from '@mui/material';
 
 import { urlFor } from '@/lib/client';
-import { Box, Typography } from '@mui/material';
 
 const HeroBanner = ({ heroBanner }) => {
 
@@ -52,9 +53,9 @@ const HeroBanner = ({ heroBanner }) => {
                   cursor: 'pointer',
                   width: '150px'
                 }}
-              >Explore</Box>
+              >The Team</Box>
             </Link>
-            <Link href={`/sign-up`}>
+            <Link href={`/`}>
               <Box
                 component='button'
                 type="button"
@@ -68,9 +69,14 @@ const HeroBanner = ({ heroBanner }) => {
                   fontWeight: 500,
                   cursor: 'pointer',
                   width: '150px',
-                  border: '1px solid #f02d34'
+                  border: '1px solid #f02d34',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-evenly'
                 }}
-              >Join Us</Box>
+              >Watch <PlayCircleOutlineIcon />
+              </Box>
             </Link>
           </Box>
         }

@@ -2,25 +2,9 @@ import React, { useEffect } from 'react';
 
 import { client } from '@/lib/client';
 import { Service, FooterBanner, HeroBanner, Review, Carousel, LogoCarousel } from '@/components';
-import { Box } from '@mui/material';
-import { useStorage } from '@/lib/utils';
-import { useStateContext } from '@/context/StateContext';
 
 const Home = ({ landingPage, services, products, reviews }: any) => {
   // reviews for the purchase process. show users a pop up when they purchase something to collect this data
-  const { getItem } = useStorage();
-  const { addUser } = useStateContext();
-  console.log(products)
-
-  useEffect(() => {
-    let userEmail = getItem('email', 'local')
-    console.log(userEmail)
-    if (userEmail) {
-      addUser({
-        email: userEmail
-      })
-    }
-  }, [])
 
   return (
     <>

@@ -8,12 +8,16 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Box } from '@mui/material';
+import { useAuth0 } from "@auth0/auth0-react";
 
-import { Cart } from '.';
+import { Cart, SignInButton, SignOutButton } from '.';
 import { useStateContext } from '@/context/StateContext';
 
 const Navbar = () => {
   const { showCart, setShowCart, totalQuantities, removeUser } = useStateContext();
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  console.log(user, isAuthenticated, isLoading)
+
   const [toggle, setToggle] = useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -47,13 +51,30 @@ const Navbar = () => {
           gap: 2,
         }}
       >
+        <SignInButton />
         <button type='button' className='cart-icon' onClick={() => setShowCart(true)}>
           <AiOutlineShopping />
           <span className='cart-item-qty'>{totalQuantities}</span>
         </button>
 
         <button type='button' className='cart-icon' onClick={handleClick}>
+          {isAuthenticated ?
+            user?.picture &&
+            <Box
+              component='img'
+              sx={{
+                width: '30px',
+                height: '30px;',
+                objectFit: 'cover',
+                borderRadius: '15px',
+                border: '1px solid #ccc'
+              }}
+              src={user?.picture}
+              alt="profile"
+            />
+          :
           <AccountCircleIcon />
+          }
         </button>
         <Menu
           id="basic-menu"
@@ -65,10 +86,10 @@ const Navbar = () => {
           }}
         >
           <MenuItem onClick={handleClose}>
-            <Link href='/profile/luffy@gmail.com'>Profile</Link>
+            <Link href='/profile'>Profile</Link>
           </MenuItem>
           <MenuItem onClick={handleClose}>
-            <Link href='/' onClick={() => removeUser()}>Logout</Link>
+            <SignOutButton />
           </MenuItem>
         </Menu>
         {showCart && <Cart />}

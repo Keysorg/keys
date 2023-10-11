@@ -6,6 +6,7 @@ import { toast } from 'react-hot-toast';
 // import PaystackPop from '@paystack/inline-js';
 import { PaystackButton } from 'react-paystack'
 import { useRouter } from 'next/navigation'
+import { useAuth0 } from "@auth0/auth0-react";
 
 import { useStateContext } from '@/context/StateContext';
 import { client, urlFor } from '@/lib/client';
@@ -13,7 +14,9 @@ import { client, urlFor } from '@/lib/client';
 const Cart = () => {
   const cartRef = useRef();
   const router = useRouter()
-  const { totalPrice, totalQuantites, cartItems, setShowCart, toggleCartItemQuantity, onRemove, user } = useStateContext();  
+  const { totalPrice, totalQuantites, cartItems, setShowCart, toggleCartItemQuantity, onRemove } = useStateContext();
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  console.log(user, isAuthenticated, isLoading)
   
   console.log(totalPrice, totalQuantites, cartItems, user)
   let email = user?.email
@@ -168,7 +171,7 @@ const Cart = () => {
               <h3>${totalPrice}</h3>
             </div>
             <div className='btn-container'>
-              {user?.email ?
+              {isAuthenticated ?
                 <PaystackButton {...componentProps} className='btn' />
                 :
                 <button onClick={handleRedirect} className='btn'>Sign In</button>

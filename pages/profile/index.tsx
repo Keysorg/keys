@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
-import { client, urlFor } from '@/lib/client';
+import { client } from '@/lib/client';
 import { Box, Typography } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useAuth0 } from "@auth0/auth0-react";
 
-
-import { useStateContext } from '@/context/StateContext';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -36,10 +35,23 @@ function CustomTabPanel(props: TabPanelProps) {
 }
 
 
-const UserProfile = ({ userInfo, userTransactions }: any) => {
-    const { user } = useStateContext();
-    const [value, setValue] = React.useState(0);
-    let { image, firstName, lastName, email, role } = userInfo;
+const UserProfile = () => {
+    const { user, isAuthenticated, isLoading } = useAuth0();
+    const [value, setValue] = useState(0);
+    const [transactions, setTransactions] = useState<any>([]);
+
+    useEffect(() => {
+        getUserTransactions()
+    }, [])
+
+    const getUserTransactions = async () => {
+        const transaction_query = `*[_type == "transaction" && email == '${user?.email}']`;
+        let userTransactions = await client.fetch(transaction_query);
+
+        if (userTransactions) {
+            setTransactions(userTransactions)
+        }
+    }
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
@@ -53,7 +65,7 @@ const UserProfile = ({ userInfo, userTransactions }: any) => {
         >
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    {image &&
+                    {user?.picture &&
                         <Box
                             component='img'
                             sx={{
@@ -63,17 +75,17 @@ const UserProfile = ({ userInfo, userTransactions }: any) => {
                                 borderRadius: '75px',
                                 border: '1px solid #ccc'
                             }}
-                            src={urlFor(image)}
+                            src={user?.picture}
                             alt="profile"
                         />
                     }
-                    <h2>{firstName}</h2>
+                    <h2>{user?.name}</h2>
                     <p>bio</p>
                 </Grid>
                 <Grid item xs={12}>
                     <Box sx={{ width: '100%', borderBottom: 1, borderColor: 'divider' }}>
                         <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example" centered>
-                            <Tab icon={<ShoppingCartIcon  />} label="Orders" />
+                            <Tab icon={<ShoppingCartIcon />} label="Orders" />
                             <Tab icon={<PersonPinIcon />} label="Account" />
                         </Tabs>
                     </Box>
@@ -91,38 +103,6 @@ const UserProfile = ({ userInfo, userTransactions }: any) => {
             </Grid>
         </Box>
     )
-}
-
-export const getStaticProps = async ({ params: { id } }: any) => {
-    console.log(id)
-    let userInfo: any = {};
-    let userTransactions: any = [];
-
-    const user_query = `*[_type == "user" && email == '${id}'][0]`;
-    userInfo = await client.fetch(user_query);
-
-    const transaction_query = `*[_type == "transaction" && email == '${id}']`;
-    userTransactions = await client.fetch(transaction_query);
-
-    return {
-        props: { userInfo, userTransactions }
-    }
-}
-
-export const getStaticPaths = async () => {
-
-    let paths: any = [
-        // {
-        //     params: {
-        //         id: 'test@gmail.com'
-        //     }
-        // }
-    ]
-
-    return {
-        paths,
-        fallback: 'blocking'
-    }
 }
 
 

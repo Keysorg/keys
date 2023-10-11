@@ -12,7 +12,7 @@ export const StateContext = ({ children }: any) => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [totalQuantities, setTotalQuantities] = useState(0);
     const [qty, setQty] = useState(1);
-    const [user, setUser] = useState<any>();
+    // const [user, setUser] = useState<any>();
     const { getItem, setItem } = useStorage()
 
     let foundProduct: any;
@@ -28,7 +28,7 @@ export const StateContext = ({ children }: any) => {
 
         console.log(email, localCartItems, localTotalPrice, localTotalQuantities)
 
-        setUser({ email: email })
+        // setUser({ email: email })
         setCartItems(localCartItems && localCartItems !== '' ? JSON.parse(localCartItems) : [])
         setTotalPrice(localTotalPrice && localTotalPrice !== '' ? parseInt(localTotalPrice) : 0)
         setTotalQuantities(localTotalQuantities && localTotalQuantities !== '' ? parseInt(localTotalQuantities) : 0)
@@ -49,10 +49,10 @@ export const StateContext = ({ children }: any) => {
     //     setItem('totalQuantities', JSON.stringify(totalQuantities ? totalQuantities : 0), 'local')
     // }, [totalQuantities])
 
-    useEffect(() => {
-        console.log('user changed', user)
-        setItem('email', user?.email ? user?.email : '', 'local')
-    }, [user])
+    // useEffect(() => {
+    //     console.log('user changed', user)
+    //     setItem('email', user?.email ? user?.email : '', 'local')
+    // }, [user])
 
     const onAdd = (product: any, quantity: any) => {
         const checkProductInCart = cartItems.find((item: any) => item._id === product._id);
@@ -116,13 +116,13 @@ export const StateContext = ({ children }: any) => {
         });
     }
 
-    const addUser = (loginDetails: any) => {
-        setUser(loginDetails)
-    }
+    // const addUser = (loginDetails: any) => {
+    //     setUser(loginDetails)
+    // }
 
-    const removeUser = () => {
-        setUser({})
-    }
+    // const removeUser = () => {
+    //     setUser({})
+    // }
 
     return (
         <Context.Provider
@@ -132,15 +132,15 @@ export const StateContext = ({ children }: any) => {
                 totalPrice,
                 totalQuantities,
                 qty,
-                user,
+                // user,
                 incQty,
                 decQty,
                 onAdd,
                 setShowCart,
                 toggleCartItemQuantity,
                 onRemove,
-                addUser,
-                removeUser
+                // addUser,
+                // removeUser
             }}
         >
             {children}

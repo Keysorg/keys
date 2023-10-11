@@ -12,3 +12,5 @@ export { default as LogoCarousel } from './LogoCarousel';
 export { default as DataTable } from './DataTable';
 export { default as Pie } from './Charts/Pie';
 export { default as Line } from './Charts/Line';
+export { default as SignInButton } from './SignInButton';
+export { default as SignOutButton } from './SignOutButton';

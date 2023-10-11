@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
-
-import { client, urlFor } from '@/lib/client';
+import { client } from '@/lib/client';
 import { Product, HeroBanner, FooterBanner } from '@/components';
-import { useStateContext } from '@/context/StateContext';
 
 
 const ServicePage = ({ service, products }: any) => {

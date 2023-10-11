@@ -17,6 +17,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/product/[slug].tsx", "pages/api/payment.ts", "pages/contact/index.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/product/[slug].tsx", "pages/api/payment.ts", "pages/contact/index.jsx", "pages/_app.tsx"],
   "exclude": ["node_modules"]
 }
