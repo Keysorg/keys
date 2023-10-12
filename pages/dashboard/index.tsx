@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -20,6 +20,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 
 import { Customers, Dashboard, Orders } from '../../components/sections';
+import withAuth from '@/lib/withAuth';
 
 const drawerWidth: number = 240;
 
@@ -74,7 +75,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function AdminDashboard() {
+const AdminDashboard = () => {
   const [open, setOpen] = useState(true);
   const [activeSection, setActiveSection] = useState('dashboard')
 
@@ -156,3 +157,5 @@ export default function AdminDashboard() {
     </ThemeProvider>
   );
 }
+
+export default withAuth(AdminDashboard);

@@ -9,7 +9,6 @@ const SignInButton = () => {
           component='button'
           onClick={() => loginWithRedirect()}
           sx={{
-            display: { xs: 'none', sm: 'flex' },
             borderRadius: '15px',
             padding: '10px 16px',
             color: '#f02d34',

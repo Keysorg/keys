@@ -2,9 +2,20 @@ import React, { useEffect } from 'react';
 
 import { client } from '@/lib/client';
 import { Service, FooterBanner, HeroBanner, Review, Carousel, LogoCarousel } from '@/components';
+import { useStorage } from '@/lib/utils';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Home = ({ landingPage, services, products, reviews }: any) => {
   // reviews for the purchase process. show users a pop up when they purchase something to collect this data
+  const { setItem} = useStorage();
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
+  useEffect(() => {
+    console.log(user, isAuthenticated, isLoading)
+    setItem('isAuthenticated', JSON.stringify(isAuthenticated), 'session')
+    setItem('userEmail', user?.email || '', 'session')
+
+  }, [isLoading])
 
   return (
     <>

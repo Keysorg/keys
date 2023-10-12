@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { AiOutlineShopping } from 'react-icons/ai';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { motion } from 'framer-motion';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Box } from '@mui/material';
@@ -12,16 +11,21 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import { Cart, SignInButton, SignOutButton } from '.';
 import { useStateContext } from '@/context/StateContext';
+// import { useStorage } from '@/lib/utils';
 
 const Navbar = () => {
   const { showCart, setShowCart, totalQuantities, removeUser } = useStateContext();
   const { user, isAuthenticated, isLoading } = useAuth0();
-  console.log(user, isAuthenticated, isLoading)
-
   const [toggle, setToggle] = useState(false);
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
+  // useEffect(() => {
+  //   console.log(user, isAuthenticated, isLoading)
+  //   setItem('isAuthenticated', JSON.parse(isAuthenticated), 'session')
+
+  // }, [isLoading])
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -58,8 +62,7 @@ const Navbar = () => {
         </button>
 
         <button type='button' className='cart-icon' onClick={handleClick}>
-          {isAuthenticated ?
-            user?.picture &&
+          {isAuthenticated &&
             <Box
               component='img'
               sx={{
@@ -72,8 +75,6 @@ const Navbar = () => {
               src={user?.picture}
               alt="profile"
             />
-          :
-          <AccountCircleIcon />
           }
         </button>
         <Menu
@@ -88,9 +89,11 @@ const Navbar = () => {
           <MenuItem onClick={handleClose}>
             <Link href='/profile'>Profile</Link>
           </MenuItem>
-          <MenuItem onClick={handleClose}>
-            <SignOutButton />
-          </MenuItem>
+          {isAuthenticated &&
+            <MenuItem onClick={handleClose}>
+              <SignOutButton />
+            </MenuItem>
+          }
         </Menu>
         {showCart && <Cart />}
 
