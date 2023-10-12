@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
-import { client } from '@/lib/client';
 import { Box, Typography } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -8,6 +7,7 @@ import PersonPinIcon from '@mui/icons-material/PersonPin';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useAuth0 } from "@auth0/auth0-react";
 
+import { client } from '@/lib/client';
 
 interface TabPanelProps {
     children?: React.ReactNode;

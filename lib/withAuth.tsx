@@ -4,9 +4,10 @@ import { useEffect } from "react";
 import { useRouter } from 'next/navigation'
 import { Box, Typography } from "@mui/material";
 import CircularProgress from '@mui/material/CircularProgress';
+
+import { client } from '@/lib/client';
 import { useStorage } from '@/lib/utils';
 
-const ADMIN = ["samuelarmahappiah@gmail.com"]
 
 export default function withAuth(Component: any) {
     return function withAuth(props: any) {
@@ -19,18 +20,31 @@ export default function withAuth(Component: any) {
         let userEmail = getItem('userEmail', 'session')
 
         useEffect(() => {
+            handleUserValidation()
+        }, [])
+
+        const handleUserValidation = async () => {
+            const query = `*[_type == "admin"]`;
+            let result = await client.fetch(query);
+            if (result) {
+                handleRedirect(result)
+            }
+        }
+
+        const handleRedirect = (admin: any) => {
             if (!JSON.parse(isAuthenticated)) {
                 loginWithRedirect()
             }
             else {
-                if (!ADMIN.includes(userEmail)) {
+                let check = admin.find((e: any) => e.email === userEmail)
+                if (!check) {
                     console.log('redirect')
                     router.push('/')
                 } else {
                     setValidate(true)
                 }
             }
-        }, [])
+        }
 
         return !validate ?
             <Box
