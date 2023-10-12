@@ -11,7 +11,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import { Cart, SignInButton, SignOutButton } from '.';
 import { useStateContext } from '@/context/StateContext';
-// import { useStorage } from '@/lib/utils';
 
 const Navbar = () => {
   const { showCart, setShowCart, totalQuantities, removeUser } = useStateContext();
@@ -19,12 +18,6 @@ const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-
-  // useEffect(() => {
-  //   console.log(user, isAuthenticated, isLoading)
-  //   setItem('isAuthenticated', JSON.parse(isAuthenticated), 'session')
-
-  // }, [isLoading])
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

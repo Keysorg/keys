@@ -16,7 +16,7 @@ export default function withAuth(Component: any) {
         const { loginWithRedirect } = useAuth0();
         const [validate, setValidate] = useState<boolean>(false);
 
-        let isAuthenticated = getItem('isAuthenticated', 'session')
+        let isAuthenticated = getItem('isAuthenticated', 'session') || 'false';
         let userEmail = getItem('userEmail', 'session')
 
         useEffect(() => {

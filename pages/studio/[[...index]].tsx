@@ -4,8 +4,9 @@ import { metadata } from 'next-sanity/studio/metadata'
 import config from '../../sanity.config'
 
 import React from 'react'
+import withAuth from '@/lib/withAuth'
 
-export default function StudioPage() {
+const StudioPage = () => {
   return (
     <>
       <Head>
@@ -17,3 +18,5 @@ export default function StudioPage() {
     </>
   )
 }
+
+export default withAuth(StudioPage);
