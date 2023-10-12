@@ -6,7 +6,7 @@ import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import { urlFor } from '@/lib/client';
 
 const FooterBanner = ({
-  footerBanner: { largeText1, largeText2, smallText2, midText2, desc2, buttonText2, image2 }
+  footerBanner: { largeText1, smallText2, midText2, desc2, image2 }
 }) => {
   return (
     <div className='footer-banner-container'>

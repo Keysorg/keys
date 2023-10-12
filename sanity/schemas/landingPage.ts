@@ -38,12 +38,6 @@ export default {
             group: 'banner1'
         },
         {
-            name: 'buttonText2',
-            title: 'ButtonText2',
-            type: 'string',
-            group: 'banner2'
-        },
-        {
             name: 'desc1',
             title: 'Desc1',
             type: 'string',
@@ -86,12 +80,6 @@ export default {
             group: 'banner2'
         },
         {
-            name: 'largeText2',
-            title: 'LargeText2',
-            type: 'string',
-            group: 'banner2'
-        },
-        {
             name: 'logos',
             title: 'Logos',
             type: 'array',
@@ -99,6 +87,26 @@ export default {
             options: {
                 hotspot: true,
             },
-        }
+        },
+        {
+            name: 'featuredTitle',
+            title: 'Featured Title',
+            type: 'string',
+        },
+        {
+            name: 'featuredDescription',
+            title: 'Featured Description',
+            type: 'string',
+        },
+        {
+            name: 'servicesTitle',
+            title: 'Services Title',
+            type: 'string',
+        },
+        {
+            name: 'servicesDescription',
+            title: 'Services Description',
+            type: 'string',
+        },
     ]
 }

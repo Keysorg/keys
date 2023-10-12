@@ -49,7 +49,8 @@ export default function withAuth(Component: any) {
         return !validate ?
             <Box
                 sx={{
-                    textAlign: 'center'
+                    textAlign: 'center',
+                    height: '100vh'
                 }}
             >
                 <Typography variant="h6">

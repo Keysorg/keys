@@ -22,8 +22,8 @@ const Home = ({ landingPage, services, products, reviews }: any) => {
       <HeroBanner heroBanner={landingPage} />
 
       <div className='products-heading'>
-        <h2>Checkout What people are excited about!</h2>
-        <p>Inspirational and stuff here</p>
+        <h2>{landingPage?.featuredTitle}</h2>
+        <p>{landingPage?.featuredDescription}</p>
       </div>
 
       <div>
@@ -31,8 +31,8 @@ const Home = ({ landingPage, services, products, reviews }: any) => {
       </div>
 
       <div className='products-heading'>
-        <h2>Checkout our Services</h2>
-        <p>Let's dive in!</p>
+        <h2>{landingPage?.servicesTitle}</h2>
+        <p>{landingPage?.servicesDescription}</p>
       </div>
 
       <div className='products-container'>

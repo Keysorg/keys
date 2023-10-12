@@ -53,7 +53,7 @@ const HeroBanner = ({ heroBanner }) => {
                   cursor: 'pointer',
                   width: '150px'
                 }}
-              >The Team</Box>
+              >{heroBanner?.buttonText1}</Box>
             </Link>
             <Link href={`/`}>
               <Box
