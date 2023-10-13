@@ -116,14 +116,6 @@ export const StateContext = ({ children }: any) => {
         });
     }
 
-    // const addUser = (loginDetails: any) => {
-    //     setUser(loginDetails)
-    // }
-
-    // const removeUser = () => {
-    //     setUser({})
-    // }
-
     return (
         <Context.Provider
             value={{
