@@ -16,7 +16,6 @@ const Cart = () => {
   const router = useRouter()
   const { totalPrice, totalQuantites, cartItems, setShowCart, toggleCartItemQuantity, onRemove } = useStateContext();
   const { user, isAuthenticated, isLoading } = useAuth0();
-  console.log(user, isAuthenticated, isLoading)
   
   console.log(totalPrice, totalQuantites, cartItems, user)
   let email = user?.email

@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+import { Box } from '@mui/material';
 
 import { client, urlFor } from '@/lib/client';
-import { Product } from '@/components';
+import { Product, VideoPlayer } from '@/components';
 import { useStateContext } from '@/context/StateContext';
 
 const ProductDetails = ({ product, products }: any) => {
     const { image, name, details, price } = product;
     const [index, setIndex] = useState(0);
     const { decQty, incQty, qty, onAdd } = useStateContext();
+    const [showPlayer, setShowPlayer] = useState(false);
 
+    console.log(product)
     return (
         <div>
             <div className='product-detail-container'>
@@ -57,10 +61,20 @@ const ProductDetails = ({ product, products }: any) => {
                     </div>
                     <div className='buttons'>
                         <button type='button' className='add-to-cart' onClick={() => onAdd(product, qty)}>Add to Cart</button>
-                        <button type='button' className='buy-now'>Buy Now</button>
+                        <button type='button' className='buy-now' onClick={() => setShowPlayer(true)}>Watch Video <PlayCircleOutlineIcon /></button>
                     </div>
                 </div>
             </div>
+            {showPlayer &&
+                <Box
+                    component='div'
+                    sx={{
+                        pt: 1
+                    }}
+                >
+                    <VideoPlayer url={product?.videoLink} />
+                </Box>
+            }
 
             <div className='maylike-products-wrapper'>
                 <h2>You may also like</h2>

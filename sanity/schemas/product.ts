@@ -50,6 +50,11 @@ export default {
             name: 'featured',
             title: 'Featured',
             type: 'boolean'
+        },
+        {
+            name: 'videoLink',
+            title: 'Video link',
+            type: 'string'
         }
     ]
 }

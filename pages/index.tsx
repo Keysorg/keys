@@ -11,7 +11,6 @@ const Home = ({ landingPage, services, products, reviews }: any) => {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   useEffect(() => {
-    console.log(user, isAuthenticated, isLoading)
     setItem('isAuthenticated', JSON.stringify(isAuthenticated), 'session')
     setItem('userEmail', user?.email || '', 'session')
 

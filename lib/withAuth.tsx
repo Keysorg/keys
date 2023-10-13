@@ -38,7 +38,6 @@ export default function withAuth(Component: any) {
             else {
                 let check = admin.find((e: any) => e.email === userEmail)
                 if (!check) {
-                    console.log('redirect')
                     router.push('/')
                 } else {
                     setValidate(true)

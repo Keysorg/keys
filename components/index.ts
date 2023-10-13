@@ -14,3 +14,4 @@ export { default as Pie } from './Charts/Pie';
 export { default as Line } from './Charts/Line';
 export { default as SignInButton } from './SignInButton';
 export { default as SignOutButton } from './SignOutButton';
+export { default as VideoPlayer } from './VideoPlayer';
