@@ -11,12 +11,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import { Cart, SignInButton, SignOutButton } from '.';
 import { useStateContext } from '@/context/StateContext';
+import { urlFor, client } from '@/lib/client';
 
 const Navbar = () => {
   const { showCart, setShowCart, totalQuantities } = useStateContext();
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [toggle, setToggle] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [footer, setFooter] = useState();
   const open = Boolean(anchorEl);
 
   let loading = true;
@@ -24,6 +26,19 @@ const Navbar = () => {
   useEffect(() => {
     loading = isLoading
   }, [isLoading])
+
+
+  useEffect(() => {
+    getFooter()
+  }, [])
+
+  const getFooter = async () => {
+    const query = `*[_type == "footer"][0]`;
+    let footer = await client.fetch(query);
+    if (footer) {
+      setFooter(footer)
+    }
+  }
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -35,7 +50,20 @@ const Navbar = () => {
   return (
     <div className='navbar-container'>
       <p className='logo'>
-        <Link href="/">ecommerce</Link>
+        {
+          footer?.logo &&
+          <Link href='/'>
+            <Box
+              component='img'
+              sx={{
+                height: '50px;',
+                objectFit: 'cover',
+              }}
+              src={urlFor(footer?.logo)}
+              alt="logo"
+            />
+          </Link>
+        }
       </p>
 
       <p className='pages'>
