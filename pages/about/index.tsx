@@ -27,6 +27,7 @@ const about = ({ pageInfo }: any) => {
                     objectFit: 'cover'
                 }}
                 src={urlFor(pageInfo.image2)}
+                alt='banner-image'
             />
 
             <div className='products-heading'>

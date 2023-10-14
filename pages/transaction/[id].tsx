@@ -34,7 +34,7 @@ const TransactionDetails = ({ transaction }: any) => {
                     {/* <div className='product-container'> */}
                     {transaction?.products.length >= 1 && transaction?.products.map((item: any, index: any) => (
                         <div className='product' key={item?._id}>
-                            <img src={urlFor(item?.image)} className='cart-product-image' />
+                            <img src={urlFor(item?.image)} className='cart-product-image' alt='cart-product-image' />
                             <div className='item-desc'>
                                 <div className='flex-column top'>
                                     <h5>{item?.name}</h5>

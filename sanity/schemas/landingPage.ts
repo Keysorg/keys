@@ -44,6 +44,12 @@ export default {
             group: 'banner1'
         },
         {
+            name: 'videoLink',
+            title: 'Video link',
+            type: 'string',
+            group: 'banner1'
+        },
+        {
             name: 'desc2',
             title: 'Desc2',
             type: 'string',

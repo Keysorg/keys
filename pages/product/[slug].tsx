@@ -1,25 +1,22 @@
 import React, { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
-import { Box } from '@mui/material';
 
 import { client, urlFor } from '@/lib/client';
-import { Product, VideoPlayer } from '@/components';
+import { Product } from '@/components';
 import { useStateContext } from '@/context/StateContext';
 
 const ProductDetails = ({ product, products }: any) => {
     const { image, name, details, price } = product;
     const [index, setIndex] = useState(0);
     const { decQty, incQty, qty, onAdd } = useStateContext();
-    // const [showPlayer, setShowPlayer] = useState(false);
 
-    console.log(product)
     return (
         <div>
             <div className='product-detail-container'>
                 <div>
                     <div className='image-container'>
-                        <img src={urlFor(image && image[index])} className='product-detail-image' />
+                        <img src={urlFor(image && image[index])} className='product-detail-image' alt='product-image' />
                     </div>
                     <div className='small-images-container'>
                         {
@@ -28,6 +25,7 @@ const ProductDetails = ({ product, products }: any) => {
                                     src={urlFor(item)}
                                     className={i === index ? 'small-image selected-image' : 'small-image'}
                                     onMouseEnter={() => setIndex(i)}
+                                    alt='variants-image'
                                 />
                             ))
                         }
@@ -65,16 +63,6 @@ const ProductDetails = ({ product, products }: any) => {
                     </div>
                 </div>
             </div>
-            {/* {showPlayer &&
-                <Box
-                    component='div'
-                    sx={{
-                        pt: 1
-                    }}
-                >
-                    <VideoPlayer url={product?.videoLink} />
-                </Box>
-            } */}
 
             <div className='maylike-products-wrapper'>
                 <h2>You may also like</h2>

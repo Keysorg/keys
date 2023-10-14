@@ -6,13 +6,13 @@ const LogoCarousel = ({ logos }) => {
         <div className='logos'>
             <div className='logos-slide'>
                 {logos.map((item) => (
-                    <img src={urlFor(item)} alt="" />
+                    <img src={urlFor(item)} alt="partner-logo" />
                 ))}
             </div>
 
             <div className='logos-slide'>
                 {logos.map((item) => (
-                    <img src={urlFor(item)} alt="" />
+                    <img src={urlFor(item)} alt="partner-logo" />
                 ))}
             </div>
         </div>

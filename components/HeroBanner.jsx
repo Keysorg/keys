@@ -55,29 +55,29 @@ const HeroBanner = ({ heroBanner }) => {
                 }}
               >{heroBanner?.buttonText1}</Box>
             </Link>
-            <Link href={`/`}>
-              <Box
-                component='button'
-                type="button"
-                sx={{
-                  borderRadius: '15px',
-                  p: '10px 16px',
-                  backgroundColor: '#fff',
-                  color: '#f02d34',
-                  border: 'none',
-                  fontSize: '18px',
-                  fontWeight: 500,
-                  cursor: 'pointer',
-                  width: '150px',
-                  border: '1px solid #f02d34',
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'space-evenly'
-                }}
-              >Watch <PlayCircleOutlineIcon />
-              </Box>
-            </Link>
+            <Box
+              component='a'
+              href={heroBanner?.videoLink}
+              target='_blank'
+              type="button"
+              sx={{
+                borderRadius: '15px',
+                p: '10px 16px',
+                backgroundColor: '#fff',
+                color: '#f02d34',
+                border: 'none',
+                fontSize: '18px',
+                fontWeight: 500,
+                cursor: 'pointer',
+                width: '150px',
+                border: '1px solid #f02d34',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-evenly'
+              }}
+            >Watch <PlayCircleOutlineIcon />
+            </Box>
           </Box>
         }
       </Box>
