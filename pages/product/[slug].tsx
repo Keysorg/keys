@@ -11,7 +11,7 @@ const ProductDetails = ({ product, products }: any) => {
     const { image, name, details, price } = product;
     const [index, setIndex] = useState(0);
     const { decQty, incQty, qty, onAdd } = useStateContext();
-    const [showPlayer, setShowPlayer] = useState(false);
+    // const [showPlayer, setShowPlayer] = useState(false);
 
     console.log(product)
     return (
@@ -61,11 +61,11 @@ const ProductDetails = ({ product, products }: any) => {
                     </div>
                     <div className='buttons'>
                         <button type='button' className='add-to-cart' onClick={() => onAdd(product, qty)}>Add to Cart</button>
-                        <button type='button' className='buy-now' onClick={() => setShowPlayer(true)}>Watch Video <PlayCircleOutlineIcon /></button>
+                        <a href={product?.videoLink} target='_blank' className='buy-now'>Watch Video <PlayCircleOutlineIcon /></a>
                     </div>
                 </div>
             </div>
-            {showPlayer &&
+            {/* {showPlayer &&
                 <Box
                     component='div'
                     sx={{
@@ -74,7 +74,7 @@ const ProductDetails = ({ product, products }: any) => {
                 >
                     <VideoPlayer url={product?.videoLink} />
                 </Box>
-            }
+            } */}
 
             <div className='maylike-products-wrapper'>
                 <h2>You may also like</h2>
