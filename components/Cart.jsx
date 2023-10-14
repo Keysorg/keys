@@ -15,7 +15,7 @@ const Cart = () => {
   const cartRef = useRef();
   const router = useRouter()
   const { totalPrice, totalQuantites, cartItems, setShowCart, toggleCartItemQuantity, onRemove } = useStateContext();
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   
   console.log(totalPrice, totalQuantites, cartItems, user)
   let email = user?.email
@@ -100,7 +100,7 @@ const Cart = () => {
   const handleRedirect = (e) => {
     e.preventDefault()
     setShowCart(false)
-    router.push('/sign-in', { scroll: false })
+    loginWithRedirect()
   }
 
   return (
