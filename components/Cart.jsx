@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Link from 'next/link';
 import { AiOutlineMinus, AiOutlinePlus, AiOutlineLeft, AiOutlineShopping } from 'react-icons/ai';
 import { TiDeleteOutline } from 'react-icons/ti';
@@ -10,14 +10,28 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import { useStateContext } from '@/context/StateContext';
 import { client, urlFor } from '@/lib/client';
+import { AlertDialog } from '.';
 
 const Cart = () => {
   const cartRef = useRef();
   const router = useRouter()
   const { totalPrice, totalQuantites, cartItems, setShowCart, toggleCartItemQuantity, onRemove } = useStateContext();
   const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
-  
   console.log(totalPrice, totalQuantites, cartItems, user)
+  const [openDialog, setOpenDialog] = useState(false);
+  const [transactionId, setTransactionId] = useState(0)
+
+  const handleClickOpen = () => {
+    setOpenDialog(true);
+  };
+
+  const handleClose = (id) => {
+    setOpenDialog(false);
+    setShowCart(false)
+    if (id) {
+      router.push(`/transaction/${id}`)
+    }
+  };
   let email = user?.email
   let amount = (totalPrice * 100).toFixed(2)
   let currency = "GHS"
@@ -76,6 +90,8 @@ const Cart = () => {
       created_at: verificationResponse.created_at
     }
 
+    setTransactionId(transaction?.id)
+
     // pass products as well
     cartItems.map((cartItem) => {
       transaction.products.push({
@@ -95,6 +111,7 @@ const Cart = () => {
         toast.success("saved to sanity successfully")
       })
       .catch((err) => console.log(err))
+    handleClickOpen()
   }
 
   const handleRedirect = (e) => {
@@ -179,6 +196,7 @@ const Cart = () => {
           </div>
         )}
       </div>
+      <AlertDialog open={openDialog} handleClose={handleClose} transactionId={transactionId} />
     </div>
   )
 }

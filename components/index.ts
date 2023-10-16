@@ -15,3 +15,4 @@ export { default as Line } from './Charts/Line';
 export { default as SignInButton } from './SignInButton';
 export { default as SignOutButton } from './SignOutButton';
 export { default as VideoPlayer } from './VideoPlayer';
+export { default as AlertDialog } from './AlertDialog';
