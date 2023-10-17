@@ -19,7 +19,7 @@ const Transition = React.forwardRef(function Transition(
 });
 
 const AlertDialog = ({ open, handleClose, transactionId }: { open: boolean, handleClose: any, transactionId: any }) => {
-    console.log(open)
+
     return (
         <div>
             <Dialog

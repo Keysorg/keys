@@ -11,8 +11,8 @@ const SignInButton = () => {
           sx={{
             borderRadius: '15px',
             padding: '10px 16px',
-            color: '#f02d34',
-            border: '1px solid #f02d34',
+            color: '#000',
+            border: '1px solid #000',
             fontSize: '18px',
             fontWeight: 500,
             cursor: 'pointer',

@@ -71,7 +71,10 @@ const Cart = () => {
         toast.success(data.message);
         saveTransactionHistory(data.data)
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        console.log(err)
+        toast.error('an error occurred', err)
+      })
   }
 
   const saveTransactionHistory = (verificationResponse) => {
