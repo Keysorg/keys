@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
-import { Box, Typography } from '@mui/material';
+import { Box, IconButton, Link, Typography } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useAuth0 } from "@auth0/auth0-react";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 import { client } from '@/lib/client';
+import { DataTable } from '@/components';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -57,6 +59,30 @@ const UserProfile = () => {
         setValue(newValue);
     };
 
+    const columns = [
+        { field: 'id', headerName: 'ID', width: 70 },
+        { field: 'price', headerName: 'Price', type: "number", width: 130 },
+        { field: 'payment_option', headerName: 'Payment Method', width: 130 },
+        { field: 'account', headerName: 'Account', width: 130 },
+        { field: 'status', headerName: 'Status', width: 130 },
+        {
+            field: 'paid_at', headerName: 'Paid At', width: 130,
+            valueGetter: ({ row }: any) =>
+                `${(new Date(row.paid_at)).toDateString()}`
+        },
+        {
+            field: 'action',
+            headerName: '',
+            width: 130,
+            renderCell: ({ row }: any) =>
+                <Link target='_blank' href={`/transaction/${row.id}`}>
+                    <IconButton color="primary">
+                        <VisibilityIcon sx={{ fontSize: '20px' }} />
+                    </IconButton>
+                </Link>,
+        },
+    ];
+
     return (
         <Box
             sx={{
@@ -91,7 +117,7 @@ const UserProfile = () => {
                     </Box>
 
                     <CustomTabPanel value={value} index={0}>
-                        Item One
+                        <DataTable rows={transactions} columns={columns} />
                     </CustomTabPanel>
                     <CustomTabPanel value={value} index={1}>
                         Item Two
