@@ -16,7 +16,9 @@ const TransactionDetails = ({ transaction }: any) => {
         >
             <Grid container spacing={2}
                 sx={{
-                    padding: 2
+                    padding: 5,
+                    backgroundColor: '#fff',
+                    borderRadius: '25px',
                 }}
             >
                 <Grid item xs={12}
@@ -125,22 +127,46 @@ const TransactionDetails = ({ transaction }: any) => {
                             display: 'flex',
                             flexDirection: 'row',
                             alignItems: 'center',
-                            gap: 1
+                            justifyContent: 'space-between'
                         }}
                     >
-                        <Typography sx={{ color: '#ccc' }}>Payment Account:</Typography>
-                        <Typography>{transaction?.account}</Typography>
-                    </Box>
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            gap: 1
-                        }}
-                    >
-                        <Typography sx={{ color: '#ccc' }}>Payment Option:</Typography>
-                        <Typography>{transaction?.payment_option}</Typography>
+                        <Box>
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    alignItems: 'center',
+                                    gap: 1
+                                }}
+                            >
+                                <Typography sx={{ color: '#ccc' }}>Payment Account:</Typography>
+                                <Typography>{transaction?.account}</Typography>
+                            </Box>
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    alignItems: 'center',
+                                    gap: 1
+                                }}
+                            >
+                                <Typography sx={{ color: '#ccc' }}>Payment Option:</Typography>
+                                <Typography>{transaction?.payment_option}</Typography>
+                            </Box>
+                        </Box>
+                        <Box>
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    alignItems: 'center',
+                                    gap: 1
+                                }}
+                            >
+                                <Typography sx={{ color: '#ccc' }}>Total Amount:</Typography>
+                                <Typography>GHS {transaction?.price}</Typography>
+                            </Box>
+                        </Box>
                     </Box>
                 </Grid>
             </Grid>

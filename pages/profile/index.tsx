@@ -112,19 +112,16 @@ const UserProfile = () => {
                     <Box sx={{ width: '100%', borderBottom: 1, borderColor: 'divider' }}>
                         <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example" centered>
                             <Tab icon={<ShoppingCartIcon />} label="Orders" />
-                            <Tab icon={<PersonPinIcon />} label="Account" />
+                            {/* <Tab icon={<PersonPinIcon />} label="Account" /> */}
                         </Tabs>
                     </Box>
 
                     <CustomTabPanel value={value} index={0}>
                         <DataTable rows={transactions} columns={columns} />
                     </CustomTabPanel>
-                    <CustomTabPanel value={value} index={1}>
+                    {/* <CustomTabPanel value={value} index={1}>
                         Item Two
-                    </CustomTabPanel>
-                    <CustomTabPanel value={value} index={2}>
-                        Item Three
-                    </CustomTabPanel>
+                    </CustomTabPanel> */}
                 </Grid>
             </Grid>
         </Box>
