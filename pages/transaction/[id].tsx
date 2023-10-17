@@ -1,9 +1,8 @@
-import React from 'react';
-import Paper from '@mui/material/Paper';
+import React, { useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
 
 import { client, urlFor } from '@/lib/client';
-import { Box, Typography } from '@mui/material';
+import { Box, Divider, Typography } from '@mui/material';
 
 const TransactionDetails = ({ transaction }: any) => {
 
@@ -15,39 +14,137 @@ const TransactionDetails = ({ transaction }: any) => {
                 mb: 10,
             }}
         >
-            <Typography variant='h4' sx={{textAlign: 'center'}}>Transaction Details</Typography>
             <Grid container spacing={2}
                 sx={{
-                    padding: 5
+                    padding: 2
                 }}
             >
-                <Grid item xs={12} sm={6} className='transaction'>
-                    <Typography>user: <span>{transaction?.userName}</span></Typography>
-                    <Typography>email: <span>{transaction?.email}</span></Typography>
-                    <Typography>price: <span>{transaction?.price}</span></Typography>
-                    <Typography>payment option: <span>{transaction?.payment_option}</span></Typography>
-                    <Typography>account: <span>{transaction?.account}</span></Typography>
-                    <Typography>status: <span>{transaction?.status}</span></Typography>
-                    <Typography>paid at: <span>{transaction?.paid_at}</span></Typography>
+                <Grid item xs={12}
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: 2
+                    }}
+                >
+                    <Typography variant='h5'>Order ID: {transaction?.id}</Typography>
+                    <Box
+                        component='div'
+                        sx={{
+                            display: 'flex',
+                            flexDirection: { xs: 'column', sm: 'row' },
+                            alignItems: { sm: 'center' },
+                            gap: 2,
+                        }}
+                    >
+                        <Box component='div'
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                gap: 2,
+                                fontSize: 10
+                            }}
+                        >
+                            <Typography
+                                sx={{
+                                    color: '#ccc'
+                                }}>
+                                Order Date:</Typography>
+                            <Typography>{(new Date(transaction?.paid_at)).toDateString()}</Typography>
+                        </Box>
+                        <Box component='div'
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                gap: 2,
+                                fontSize: 10
+                            }}
+                        >
+                            <Typography
+                                sx={{
+                                    color: '#cccccc'
+                                }}>Status:</Typography>
+                            <Typography sx={{ color: 'green' }}>{transaction?.status}</Typography>
+                        </Box>
+                    </Box>
+                    <Divider />
                 </Grid>
-                <Grid item xs={12} sm={6}>
-                    {/* <div className='product-container'> */}
+                <Grid item xs={12}>
                     {transaction?.products.length >= 1 && transaction?.products.map((item: any, index: any) => (
-                        <div className='product' key={item?._id}>
-                            <img src={urlFor(item?.image)} className='cart-product-image' alt='cart-product-image' />
-                            <div className='item-desc'>
-                                <div className='flex-column top'>
-                                    <h5>{item?.name}</h5>
-                                    <h4>${item?.price}</h4>
-                                    <h4>x{item?.quantity}</h4>
-                                </div>
-                            </div>
-                        </div>
+                        <Box component='div' key={item?._id}
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                pb: 2
+                            }}
+                        >
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    // alignItems: 'center',
+                                    gap: 2
+                                }}
+                            >
+                                <Box
+                                    component='img'
+                                    src={urlFor(item?.image)}
+                                    alt='cart-product-image'
+                                    sx={{
+                                        width: '150px',
+                                        height: '150px',
+                                        borderRadius: '15px',
+                                        backgroundColor: '#ebebeb',
+                                        objectFit: 'cover',
+                                    }}
+                                />
+                                <Typography>{item?.name}</Typography>
+                            </Box>
+                            <Box
+                                component='div'
+                            >
+                                <Typography>GHS {item?.price}</Typography>
+                                <Typography sx={{ color: '#ccc', fontSize: 14 }}>Qty: {item?.quantity}</Typography>
+                            </Box>
+                        </Box>
                     ))}
-                    {/* </div> */}
+                    <Divider />
+                </Grid>
+                <Grid item xs={12}
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: 1
+                    }}
+                >
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            gap: 1
+                        }}
+                    >
+                        <Typography sx={{ color: '#ccc' }}>Payment Account:</Typography>
+                        <Typography>{transaction?.account}</Typography>
+                    </Box>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            gap: 1
+                        }}
+                    >
+                        <Typography sx={{ color: '#ccc' }}>Payment Option:</Typography>
+                        <Typography>{transaction?.payment_option}</Typography>
+                    </Box>
                 </Grid>
             </Grid>
-        </Box>
+        </Box >
     )
 }
 
