@@ -86,15 +86,6 @@ export default {
             group: 'banner2'
         },
         {
-            name: 'logos',
-            title: 'Logos',
-            type: 'array',
-            of: [{ type: 'image' }],
-            options: {
-                hotspot: true,
-            },
-        },
-        {
             name: 'featuredTitle',
             title: 'Featured Title',
             type: 'string',

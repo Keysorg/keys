@@ -745,6 +745,43 @@ margin-top: 160px;
   background-color: #324d67;
 }
 
+.review-container {
+  /* background-color: #dcdcdc; */
+  height: 300px;
+  width: 400px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.review-container p {
+  font-size: 18px;
+  width: 300px;
+  text-align: center;
+}
+
+.review-container img {
+  /* position: absolute; */
+  /* top: 0%; */
+  /* right:20%; */
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 75px;
+  border: 1px solid #ccc;
+}
+
+.review-container .social {
+display: flex;
+flex-direction: row;
+align-items: center;
+gap: 5px;
+color: #324d67;
+font-size: 20px;
+}
+
 @media screen and (max-width:800px) {
   /* .hero-banner-container{
     height: 560px;
@@ -914,43 +951,9 @@ margin-top: 160px;
   .buttons .buy-now{
     width: 180px;
   }
-}
-
-.review-container {
-  /* background-color: #dcdcdc; */
-  height: 300px;
-  width: 400px;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-.review-container p {
-  font-size: 18px;
-  width: 300px;
-  text-align: center;
-}
-
-.review-container img {
-  /* position: absolute; */
-  /* top: 0%; */
-  /* right:20%; */
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 75px;
-  border: 1px solid #ccc;
-}
-
-.review-container .social {
-display: flex;
-flex-direction: row;
-align-items: center;
-gap: 5px;
-color: #324d67;
-font-size: 20px;
+  .review-container {
+    width: 245px;
+  }
 }
 
 .carousel-container {

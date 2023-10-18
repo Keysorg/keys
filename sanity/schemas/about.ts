@@ -20,6 +20,14 @@ export default {
             }
         },
         {
+            name: 'image3',
+            title: 'Image 3',
+            type: 'image',
+            options: {
+                hotspot: true
+            }
+        },
+        {
             name: 'values',
             title: 'Values',
             type: 'array',
@@ -108,19 +116,28 @@ export default {
             ]
         },
         {
-            name: 'smallText1',
-            title: 'Small Text',
+            name: 'header1',
+            title: 'Header 1',
             type: 'string'
         },
         {
-            name: 'midText1',
-            title: 'Mid Text',
+            name: 'header2',
+            title: 'Header 2',
             type: 'string'
         },
         {
-            name: 'buttonText1',
-            title: 'Button Text',
+            name: 'header3',
+            title: 'Header3',
             type: 'string'
-        }
+        },
+        {
+            name: 'logos',
+            title: 'Logos',
+            type: 'array',
+            of: [{ type: 'image' }],
+            options: {
+                hotspot: true,
+            },
+        },
     ]
 }

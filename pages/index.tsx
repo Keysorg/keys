@@ -38,8 +38,6 @@ const Home = ({ landingPage, services, products, reviews }: any) => {
         {services?.map((service: any) => <Service key={service._id} service={service} />)}
       </div>
 
-      <LogoCarousel logos={landingPage.logos} />
-
       <FooterBanner footerBanner={landingPage} />
 
       <div className='products-heading'>
