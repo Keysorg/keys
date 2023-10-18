@@ -19,6 +19,9 @@ const TransactionDetails = ({ transaction }: any) => {
                     padding: 5,
                     backgroundColor: '#fff',
                     borderRadius: '25px',
+                    margin: 'auto',
+                    width: { xs: '100%', sm: '80%' },
+                    boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px'
                 }}
             >
                 <Grid item xs={12}
@@ -77,9 +80,9 @@ const TransactionDetails = ({ transaction }: any) => {
                         <Box component='div' key={item?._id}
                             sx={{
                                 display: 'flex',
-                                flexDirection: 'row',
+                                flexDirection: { xs: 'column', sm: 'row' },
                                 justifyContent: 'space-between',
-                                alignItems: 'center',
+                                // alignItems: { sm: 'center' },
                                 pb: 2
                             }}
                         >
@@ -126,7 +129,7 @@ const TransactionDetails = ({ transaction }: any) => {
                         sx={{
                             display: 'flex',
                             flexDirection: 'row',
-                            alignItems: 'center',
+                            alignItems: { sm: 'center' },
                             justifyContent: 'space-between'
                         }}
                     >
@@ -134,9 +137,10 @@ const TransactionDetails = ({ transaction }: any) => {
                             <Box
                                 sx={{
                                     display: 'flex',
-                                    flexDirection: 'row',
-                                    alignItems: 'center',
-                                    gap: 1
+                                    flexDirection: { xs: 'column', sm: 'row' },
+                                    alignItems: { sm: 'center' },
+                                    gap: 1,
+                                    mb: 1
                                 }}
                             >
                                 <Typography sx={{ color: '#ccc' }}>Payment Account:</Typography>
@@ -145,8 +149,8 @@ const TransactionDetails = ({ transaction }: any) => {
                             <Box
                                 sx={{
                                     display: 'flex',
-                                    flexDirection: 'row',
-                                    alignItems: 'center',
+                                    flexDirection: { xs: 'column', sm: 'row' },
+                                    alignItems: { sm: 'center' },
                                     gap: 1
                                 }}
                             >
@@ -158,8 +162,8 @@ const TransactionDetails = ({ transaction }: any) => {
                             <Box
                                 sx={{
                                     display: 'flex',
-                                    flexDirection: 'row',
-                                    alignItems: 'center',
+                                    flexDirection: { xs: 'column', sm: 'row' },
+                                    alignItems: { sm: 'center' },
                                     gap: 1
                                 }}
                             >
