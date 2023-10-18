@@ -737,7 +737,7 @@ margin-top: 160px;
   cursor: pointer;
   z-index:10000 !important;
   width: 100%;
-  background-color: #f02d34;
+  background-color: #000;
 }
 
 .action-button:hover {

@@ -1,18 +1,19 @@
 import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { Box, TextField, Typography } from '@mui/material';
+import toast from 'react-hot-toast';
 
 const ContactPage = () => {
     const form = useRef();
 
     const sendEmail = (e) => {
         e.preventDefault();
-        console.log('sending email')
         emailjs.sendForm(process.env.NEXT_PUBLIC_SERVICE_ID, process.env.NEXT_PUBLIC_TEMPLATE_ID, form.current, process.env.NEXT_PUBLIC_PUBLIC_KEY)
             .then((result) => {
-                console.log(result.text);
+                e.target.reset()
+                toast.success('Message sent successfully!')
             }, (error) => {
-                console.log(error.text);
+                toast.error('Something went wrong!')
             });
     };
 
@@ -24,18 +25,20 @@ const ContactPage = () => {
             noValidate
             sx={{
                 display: 'flex',
-                flexDirection: { xs: 'column', sm: 'row' },
-                gap: 10,
+                flexDirection: { xs: 'column', md: 'row' },
+                justifyContent: 'space-evenly',
+                // gap: 10,
                 alignItems: 'center',
-                height: '100%',
+                height: '500px',
                 mt: 10,
-                mb: 10
+                mb: 10,
+                margin: 'auto',
             }}
         >
             <Typography variant='h5'>We'd love to hear from you!</Typography>
             <Box
                 sx={{
-                    width: { xs: '100%', sm: '50%' }
+                    width: { xs: '100%', sm: '80%', md: '50%' }
                 }}
             >
                 <TextField
