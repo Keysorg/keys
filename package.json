@@ -39,6 +39,7 @@
     "react-icons": "^4.3.1",
     "react-paystack": "^4.0.3",
     "react-player": "^2.13.0",
+    "react-qr-code": "^2.0.12",
     "recharts": "^2.8.0",
     "sanity": "^3.8.3",
     "stripe": "^8.209.0",

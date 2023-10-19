@@ -3,8 +3,16 @@ import Grid from '@mui/material/Grid';
 
 import { client, urlFor } from '@/lib/client';
 import { Box, Divider, Typography } from '@mui/material';
+import { QrCodeGenerator } from '@/components';
 
 const TransactionDetails = ({ transaction }: any) => {
+    const [qrCodeValue, setQrCodeValue] = useState('');
+
+    useEffect(() => {
+        let verifyUrl = `${window?.location.hostname}/transaction-verify/${transaction?.id}`
+        console.log(verifyUrl)
+        setQrCodeValue(verifyUrl)
+    }, [])
 
     return (
         <Box
@@ -77,7 +85,7 @@ const TransactionDetails = ({ transaction }: any) => {
                 </Grid>
                 <Grid item xs={12}>
                     {transaction?.products.length >= 1 && transaction?.products.map((item: any, index: any) => (
-                        <Box component='div' key={item?._id}
+                        <Box component='div' key={index}
                             sx={{
                                 display: 'flex',
                                 flexDirection: { xs: 'column', sm: 'row' },
@@ -172,6 +180,14 @@ const TransactionDetails = ({ transaction }: any) => {
                             </Box>
                         </Box>
                     </Box>
+                </Grid>
+                <Grid item xs={12}
+                    sx={{
+                        textAlign: 'center',
+                        mt: 2
+                    }}
+                >
+                    <QrCodeGenerator qrCodeValue={qrCodeValue} />
                 </Grid>
             </Grid>
         </Box >

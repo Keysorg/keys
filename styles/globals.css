@@ -782,6 +782,11 @@ color: #324d67;
 font-size: 20px;
 }
 
+.qr-code {
+  width: 100px;
+  height: 100px;
+}
+
 @media screen and (max-width:800px) {
   /* .hero-banner-container{
     height: 560px;
