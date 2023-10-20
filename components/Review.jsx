@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import { AiFillLinkedin, AiFillInstagram, AiOutlineTwitter } from 'react-icons/ai';
 
 import { urlFor } from '@/lib/client';
@@ -14,9 +13,9 @@ const Reviews = ({ review: { image, name, details, bio, social } }) => {
 
       {social &&
         <div className='social'>
-          <Link className='icons' href={social && social[0]?.linkedIn}><AiFillLinkedin /></Link>
-          <Link className='icons' href={social && social[0]?.instagram}><AiFillInstagram /></Link>
-          <Link className='icons' href={social && social[0]?.twitter}><AiOutlineTwitter /></Link>
+          <a className='icons' href={social && social[0]?.linkedIn} target='_blank'><AiFillLinkedin /></a>
+          <a className='icons' href={social && social[0]?.instagram} target='_blank'><AiFillInstagram /></a>
+          <a className='icons' href={social && social[0]?.twitter} target='_blank'><AiOutlineTwitter /></a>
         </div>
       }
 

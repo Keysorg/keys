@@ -70,7 +70,7 @@ const Navbar = () => {
         <Link href="/service/Events">Events</Link>
         <Link href="/service/Travel & Tour">Travel & Tour</Link>
         <Link href="/service/Art">Art</Link>
-        <Link href="/about">About Us</Link>
+        <Link href="/about">About</Link>
         <Link href="/contact">Contact</Link>
       </p>
 
@@ -148,7 +148,7 @@ const Navbar = () => {
                         <Link href="/service/Art" onClick={() => setToggle(false)}>Art</Link>
                       </li>
                       <li key='about'>
-                        <Link href="/about" onClick={() => setToggle(false)}>About Us</Link>
+                        <Link href="/about" onClick={() => setToggle(false)}>About</Link>
                       </li>
                       <li key='contact'>
                         <Link href="/contact" onClick={() => setToggle(false)}>Contact</Link>
