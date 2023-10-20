@@ -492,7 +492,7 @@ padding: 30px 65px;
   margin-top: 60px;
   color: #000;
   /* color: #324d67; */
-
+  
 }
 
 .product-detail-image{
@@ -700,7 +700,10 @@ margin-top: 160px;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  padding: 50px;
+  /* padding: 50px; */
+  padding-top: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .about-values div {
@@ -848,8 +851,8 @@ font-size: 20px;
     flex-wrap: wrap;
     }
   .product-detail-container .product-detail-image{
-    width: 350px;
-    height: 350px;
+    width: 330px;
+    height: 330px;
   }
   .cart-container{
     width: 415px;
@@ -1014,6 +1017,7 @@ font-size: 20px;
 .carousel-item p {
   color: #fff;
   font-size: 2rem;
+  text-align: center;
 }
 
 .carousel-item button {
@@ -1043,7 +1047,7 @@ font-size: 20px;
 
 @media(width < 600px) {
 .carousel-btn {
-  display: none;
+  /* display: none; */
 }
 
 }
@@ -1127,15 +1131,15 @@ font-size: 20px;
 }
 
 .app-navbar-menu {
-  width: 30px;
-  height: 30px;
+  /* width: 30px;
+  height: 30px; */
   border-radius: 50%;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #fff;
-  background-color: #000;
+  /* background-color: #000; */
 }
 
 .app-navbar-menu div {

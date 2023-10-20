@@ -43,9 +43,7 @@ const Home = ({ landingPage, services, products, reviews }: any) => {
       <div className='products-heading'>
         <h2>What Do our Client's Say?</h2>
       </div>
-      {/* <script src="https://js.paystack.co/v1/inline.js"></script>
-      <script src="pages/api/payment.js"></script> */}
-      
+
       <div className='products-container'>
         {reviews?.map((review: any) => <Review key={review._id} review={review} />)}
       </div>

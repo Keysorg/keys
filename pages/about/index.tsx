@@ -37,7 +37,7 @@ const about = ({ pageInfo }: any) => {
                     sx={{
                         width: { xs: '100%', sm: '350px', md: '500px' },
                         height: '450px',
-                        borderRadius: { sm: '10px', md: '5px' },
+                        borderRadius: { xs: '15px', sm: '10px', md: '5px' },
                         backgroundColor: '#ebebeb',
                         objectFit: 'cover',
                     }}
@@ -95,12 +95,27 @@ const about = ({ pageInfo }: any) => {
                     textAlign: 'center',
                     fontSize: { xs: '20px', sm: '30px' },
                     fontWeight: '300px',
-                    backgroundColor: '#000',
-                    color: '#fff'
+                    // backgroundColor: '#000',
+                    color: '#000',
+                    mb: 1
+                    // height: '100px'
                 }}
             >
                 {pageInfo?.header3}
             </Typography>
+            <Box
+                component='img'
+                src={urlFor(pageInfo?.image4)}
+                alt=''
+                sx={{
+                    // width: { xs: '', sm: '350px', md: '500px' },
+                    width: { xs: '100%'},
+                    height: '500px',
+                    borderRadius: { sm: '10px', md: '5px' },
+                    backgroundColor: '#ebebeb',
+                    objectFit: 'cover',
+                }}
+            />
 
             <div className='about-values'>
                 {pageInfo.values.map((value: any) => (

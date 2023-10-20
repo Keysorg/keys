@@ -28,6 +28,14 @@ export default {
             }
         },
         {
+            name: 'image4',
+            title: 'Image 4',
+            type: 'image',
+            options: {
+                hotspot: true
+            }
+        },
+        {
             name: 'values',
             title: 'Values',
             type: 'array',

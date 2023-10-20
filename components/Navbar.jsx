@@ -126,8 +126,9 @@ const Navbar = () => {
             </Menu>
             {showCart && <Cart />}
 
+            <MenuIcon sx={{ display: { sm: 'none' } }} onClick={() => setToggle(true)} />
+
             <div className='app-navbar-menu'>
-              <MenuIcon fontSize='10' onClick={() => setToggle(true)} />
 
               {
                 toggle && (
