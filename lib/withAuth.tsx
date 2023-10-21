@@ -53,7 +53,7 @@ export default function withAuth(Component: any) {
                 }}
             >
                 <Typography variant="h6">
-                    Checking...
+                    Validating, one moment please...
                 </Typography>
                 <CircularProgress />
             </Box>

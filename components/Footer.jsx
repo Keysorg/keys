@@ -1,71 +1,54 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { AiFillInstagram, AiOutlineTwitter } from 'react-icons/ai';
 import { Box, Typography } from '@mui/material';
 
+import { client } from '@/lib/client';
+
 
 const Footer = () => {
-  return (
-    // <div className='footer-container'>
-    //   {/* <p>{footer.rights}</p> */}
-    //   <p>2023 ecommerce All rights reserved</p>
-    //   <p className='icons'>
-    //     {/* <a href={footer.instagram}> */}
-    //       <AiFillInstagram />
-    //     {/* </a> */}
-    //     {/* <a href={footer.twitter}> */}
-    //       <AiOutlineTwitter />
-    //     {/* </a> */}
-    //   </p>
-    // </div>
-    // <div className='footer-container'>
-    //   <div>
-    //     <h2>Keys Entertainment</h2>
-    //     <div className='footer-container-newsletter'>
-    //       <input className='footer-container-input' placeholder='email'/>
-    //       <button type='button'>subscribe</button>
-    //     </div>
-    //   </div>
-    //   <div className='footer-container-item'>
-    //     <h3>Company</h3>
-    //     <Link href=''>about us</Link>
-    //     <Link href=''>events</Link>
-    //     <Link href=''>art</Link>
-    //     <Link href=''>travel & tour</Link>
-    //   </div>
-    //   <div className='footer-container-item'>
-    //     <h3>Social</h3>
-    //     <Link className='icons' href=''><AiFillInstagram /> instagram</Link>
-    //     <Link className='icons' href=''><AiOutlineTwitter /> twitter</Link>
-    //   </div>
-    //   <div className='footer-container-item'>
-    //     <h3>Resources</h3>
-    //     <Link className='icons' href=''>Legal</Link>
-    //     <Link className='icons' href=''>Policies</Link>
-    //   </div>
-    // </div>
+  const [footer, setFooter] = useState();
 
+  useEffect(() => {
+    getFooter()
+  }, [])
+
+  const getFooter = async () => {
+    const query = `*[_type == "footer"][0]`;
+    let footer = await client.fetch(query);
+
+    if (footer) {
+      setFooter(footer)
+    }
+  }
+
+  return (
     <Box
       sx={{
         display: 'flex',
         flexDirection: 'row',
         gap: 5,
         justifyContent: 'center',
-        p: 3
+        p: 3,
+        // position: 'absolute',
+        textAlign: 'center',
+        bottom: 0,
       }}
     >
-      <Typography variant="body2" color="text.secondary" align="center">
-        {'Copyright © '}
-        <Link color="inherit" href="https://google.com">
-          company
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
+      <Typography variant="body2" color="text.secondary" sx={{fontSize: {xs: 10, sm: 12}}}>
+        <a color="inherit" href={footer?.termsAndConditions} target='_blank'>
+          Terms and Conditions
+        </a>
       </Typography>
-      <Typography variant="body2" color="text.secondary" align="center">
-        <Link color="inherit" href="https://google.com">
+      <Typography variant="body2" color="text.secondary" sx={{fontSize: {xs: 10, sm: 12}}}>
+        <a color="inherit" href={footer?.legal} target='_blank'>
           Legal Agreement
-        </Link>{' '}
+        </a>
+      </Typography>
+      <Typography variant="body2" color="text.secondary" sx={{fontSize: {xs: 10, sm: 12}}}>
+        <a color="inherit" href={footer?.policies} target='_blank'>
+          Policies
+        </a>
       </Typography>
     </Box>
 
