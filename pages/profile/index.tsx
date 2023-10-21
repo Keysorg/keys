@@ -9,7 +9,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
 import { client } from '@/lib/client';
-import { DataTable } from '@/components';
+import { DataTable, SignOutButton } from '@/components';
+import { useStorage } from '@/lib/utils';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -19,6 +20,7 @@ interface TabPanelProps {
 
 function CustomTabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
+
     return (
         <div
             role="tabpanel"
@@ -29,7 +31,7 @@ function CustomTabPanel(props: TabPanelProps) {
         >
             {value === index && (
                 <Box sx={{ p: 3 }}>
-                    <Typography>{children}</Typography>
+                    <Box>{children}</Box>
                 </Box>
             )}
         </div>
@@ -41,10 +43,12 @@ const UserProfile = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
     const [value, setValue] = useState(0);
     const [transactions, setTransactions] = useState<any>([]);
+    const { logout } = useAuth0();
+    const { removeItem } = useStorage()
 
     useEffect(() => {
         getUserTransactions()
-    }, [])
+    }, [isLoading])
 
     const getUserTransactions = async () => {
         const transaction_query = `*[_type == "transaction" && email == '${user?.email}']`;
@@ -79,7 +83,7 @@ const UserProfile = () => {
                     <IconButton color="primary">
                         <VisibilityIcon sx={{ fontSize: '20px' }} />
                     </IconButton>
-                </Link>,
+                </Link>
         },
     ];
 
@@ -106,22 +110,44 @@ const UserProfile = () => {
                         />
                     }
                     <h2>{user?.name}</h2>
-                    <p>bio</p>
+                    <Box
+                        component='button'
+                        onClick={() => {
+                            removeItem('isAuthenticated', 'session')
+                            logout({ logoutParams: { returnTo: window.location.origin } })
+                        }}
+                        sx={{
+                            borderRadius: '15px',
+                            padding: '10px 16px',
+                            color: '#fff',
+                            border: 'none',
+                            fontSize: '18px',
+                            fontWeight: 500,
+                            cursor: 'pointer',
+                            width: '120px',
+                            backgroundColor: '#000',
+                            m: 1,
+
+                            '&:hover' : {
+                                color: '#000',
+                                backgroundColor: '#fff',
+                                border: '1px solid #000'
+                            }
+                        }}
+                    >
+                        Sign Out
+                    </Box>
                 </Grid>
                 <Grid item xs={12}>
                     <Box sx={{ width: '100%', borderBottom: 1, borderColor: 'divider' }}>
                         <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example" centered>
                             <Tab icon={<ShoppingCartIcon />} label="Orders" />
-                            {/* <Tab icon={<PersonPinIcon />} label="Account" /> */}
                         </Tabs>
                     </Box>
 
                     <CustomTabPanel value={value} index={0}>
                         <DataTable rows={transactions} columns={columns} />
                     </CustomTabPanel>
-                    {/* <CustomTabPanel value={value} index={1}>
-                        Item Two
-                    </CustomTabPanel> */}
                 </Grid>
             </Grid>
         </Box>

@@ -11,7 +11,7 @@ const SignOutButton = () => {
   return (
     <Box
       component='button'
-      onClick={() => logout({ logoutParams: { returnTo: window.location.origin } }) && removeItem('isAuthenticated', 'session') && removeItem('userEmail', 'session')}
+      onClick={() => logout({ logoutParams: { returnTo: window.location.origin } }) && removeItem('isAuthenticated', 'session')}
       sx={{
         border: 'none',
         color: '#000',

@@ -76,7 +76,7 @@ export default function Orders() {
       <div>
         <Title>Orders</Title>
         <div>
-          <DataTable rows={transactions} columns={columns} />
+          <DataTable rows={transactions} columns={columns} showToolbar={true} />
         </div>
       </div>
     </React.Fragment>
