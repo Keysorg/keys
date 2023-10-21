@@ -30,7 +30,7 @@ const Transaction = ({ transactions }: any) => {
             headerName: '',
             width: 130,
             renderCell: ({ row }: any) =>
-                <Link target='_blank' href={`/transaction/${row.id}`}>
+                <Link href={`/transaction/${row.id}`}>
                     <Button variant='contained' onClick={() => console.log(row)}>
                         View
                     </Button>

@@ -75,7 +75,7 @@ const UserProfile = () => {
             headerName: '',
             width: 130,
             renderCell: ({ row }: any) =>
-                <Link target='_blank' href={`/transaction/${row.id}`}>
+                <Link href={`/transaction/${row.id}`}>
                     <IconButton color="primary">
                         <VisibilityIcon sx={{ fontSize: '20px' }} />
                     </IconButton>
