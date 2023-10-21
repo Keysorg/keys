@@ -12,34 +12,21 @@ export const StateContext = ({ children }: any) => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [totalQuantities, setTotalQuantities] = useState(0);
     const [qty, setQty] = useState(1);
-    // const [user, setUser] = useState<any>();
     const { getItem, setItem } = useStorage()
 
     let foundProduct: any;
     let index: any;
 
     const handleSessionStorage = () => {
-        console.log('unload')
-
-        console.log('cartitem changed', cartItems)
         setItem('cartItems', JSON.stringify(cartItems), 'session')
-
-        console.log('totalprice changed', totalPrice)
         setItem('totalPrice', JSON.stringify(totalPrice), 'session')
-
-        console.log('totalQuantities changed', totalQuantities)
         setItem('totalQuantities', JSON.stringify(totalQuantities ? totalQuantities : 0), 'session')
     }
 
     useEffect(() => {
-        console.log('context')
-        let email = getItem('email', 'session')
-        // let localShowCart = getItem('showCart', 'local')
         let localCartItems = getItem('cartItems', 'session')
         let localTotalPrice = getItem('totalPrice', 'session')
         let localTotalQuantities = getItem('totalQuantities', 'session')
-
-        console.log(email, localCartItems, localTotalPrice, localTotalQuantities)
 
         setCartItems(localCartItems && localCartItems !== '' ? JSON.parse(localCartItems) : [])
         setTotalPrice(localTotalPrice && localTotalPrice !== '' ? parseInt(localTotalPrice) : 0)
@@ -114,6 +101,13 @@ export const StateContext = ({ children }: any) => {
         });
     }
 
+    const resetStates = () => {
+        setShowCart(false)
+        setCartItems([])
+        setTotalPrice(0)
+        setTotalQuantities(0)
+    }
+
     return (
         <Context.Provider
             value={{
@@ -122,15 +116,13 @@ export const StateContext = ({ children }: any) => {
                 totalPrice,
                 totalQuantities,
                 qty,
-                // user,
                 incQty,
                 decQty,
                 onAdd,
                 setShowCart,
                 toggleCartItemQuantity,
                 onRemove,
-                // addUser,
-                // removeUser
+                resetStates
             }}
         >
             {children}

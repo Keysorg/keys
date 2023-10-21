@@ -16,7 +16,7 @@ import { useStorage } from "@/lib/utils";
 const Cart = () => {
   const cartRef = useRef();
   const router = useRouter()
-  const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuantity, onRemove } = useStateContext();
+  const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuantity, onRemove, resetStates } = useStateContext();
   const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
 
   const [openDialog, setOpenDialog] = useState(false);
@@ -116,9 +116,7 @@ const Cart = () => {
       .then((data) => {
         toast.success("saved to sanity successfully")
         // remove session values after transaction
-        removeItem('cartItems', 'session')
-        removeItem('totalPrice', 'session')
-        removeItem('totalQuantities', 'session')
+        resetStates()
       })
       .catch((err) => console.log(err))
     handleClickOpen()
