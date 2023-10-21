@@ -11,15 +11,18 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useStateContext } from '@/context/StateContext';
 import { client, urlFor } from '@/lib/client';
 import { AlertDialog } from '.';
+import { useStorage } from "@/lib/utils";
 
 const Cart = () => {
   const cartRef = useRef();
   const router = useRouter()
-  const { totalPrice, totalQuantites, cartItems, setShowCart, toggleCartItemQuantity, onRemove } = useStateContext();
+  const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuantity, onRemove } = useStateContext();
   const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
-  console.log(totalPrice, totalQuantites, cartItems, user)
+
   const [openDialog, setOpenDialog] = useState(false);
   const [transactionId, setTransactionId] = useState(0)
+
+  const { removeItem } = useStorage()
 
   const handleClickOpen = () => {
     setOpenDialog(true);
@@ -112,6 +115,10 @@ const Cart = () => {
     client.create(transaction)
       .then((data) => {
         toast.success("saved to sanity successfully")
+        // remove session values after transaction
+        removeItem('cartItems', 'session')
+        removeItem('totalPrice', 'session')
+        removeItem('totalQuantities', 'session')
       })
       .catch((err) => console.log(err))
     handleClickOpen()
@@ -133,7 +140,7 @@ const Cart = () => {
         >
           <AiOutlineLeft />
           <span className='heading'>Your Cart</span>
-          <span className='cart-num-items'>({totalQuantites} items)</span>
+          <span className='cart-num-items'>({totalQuantities} items)</span>
         </button>
 
         {cartItems.length < 1 && (

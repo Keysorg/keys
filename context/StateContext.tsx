@@ -18,41 +18,39 @@ export const StateContext = ({ children }: any) => {
     let foundProduct: any;
     let index: any;
 
+    const handleSessionStorage = () => {
+        console.log('unload')
+
+        console.log('cartitem changed', cartItems)
+        setItem('cartItems', JSON.stringify(cartItems), 'session')
+
+        console.log('totalprice changed', totalPrice)
+        setItem('totalPrice', JSON.stringify(totalPrice), 'session')
+
+        console.log('totalQuantities changed', totalQuantities)
+        setItem('totalQuantities', JSON.stringify(totalQuantities ? totalQuantities : 0), 'session')
+    }
+
     useEffect(() => {
         console.log('context')
-        let email = getItem('email', 'local')
+        let email = getItem('email', 'session')
         // let localShowCart = getItem('showCart', 'local')
-        let localCartItems = getItem('cartItems', 'local')
-        let localTotalPrice = getItem('totalPrice', 'local')
-        let localTotalQuantities = getItem('totalQuantities', 'local')
+        let localCartItems = getItem('cartItems', 'session')
+        let localTotalPrice = getItem('totalPrice', 'session')
+        let localTotalQuantities = getItem('totalQuantities', 'session')
 
         console.log(email, localCartItems, localTotalPrice, localTotalQuantities)
 
-        // setUser({ email: email })
         setCartItems(localCartItems && localCartItems !== '' ? JSON.parse(localCartItems) : [])
         setTotalPrice(localTotalPrice && localTotalPrice !== '' ? parseInt(localTotalPrice) : 0)
         setTotalQuantities(localTotalQuantities && localTotalQuantities !== '' ? parseInt(localTotalQuantities) : 0)
     }, [])
 
-    // useEffect(() => {
-    //     console.log('cartitem changed', cartItems)
-    //     setItem('cartItems', JSON.stringify(cartItems), 'local')
-    // }, [cartItems])
+    useEffect(() => {
+        // once quantities change, it suggests that states have updated
+        window.addEventListener('beforeunload', handleSessionStorage);
+    }, [totalQuantities])
 
-    // useEffect(() => {
-    //     console.log('totalprice changed', totalPrice)
-    //     setItem('totalPrice', JSON.stringify(totalPrice), 'local')
-    // }, [totalPrice])
-
-    // useEffect(() => {
-    //     console.log('totalQuantities changed', totalQuantities)
-    //     setItem('totalQuantities', JSON.stringify(totalQuantities ? totalQuantities : 0), 'local')
-    // }, [totalQuantities])
-
-    // useEffect(() => {
-    //     console.log('user changed', user)
-    //     setItem('email', user?.email ? user?.email : '', 'local')
-    // }, [user])
 
     const onAdd = (product: any, quantity: any) => {
         const checkProductInCart = cartItems.find((item: any) => item._id === product._id);
