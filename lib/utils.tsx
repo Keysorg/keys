@@ -18,9 +18,9 @@ export const calculateTransactionData = (transactions: any) => {
 
     let trendData: any = [
         ["Month", "Sales"],
-        ["June", 33],
-        ["July", 23],
-        ["August", 90]
+        // ["June", 33],
+        // ["July", 23],
+        // ["August", 90]
     ]
     let aggregatedTrendData: any = {}
 
@@ -73,13 +73,12 @@ export const calculateTransactionData = (transactions: any) => {
         let month: any = monthNames[(new Date(transaction.paid_at).getMonth())]
 
         if (Object.keys(aggregatedTrendData).includes(month)) {
-            aggregatedTrendData[month].push(transaction.price)
+            aggregatedTrendData[month].push(parseInt(transaction.price))
         }
         else {
-            aggregatedTrendData[month] = [transaction.price]
+            aggregatedTrendData[month] = [parseInt(transaction.price)]
         }
     })
-
     Object.keys(aggregatedTrendData).map((key: any, idx: any) => {
         trendData.push([
             key,
