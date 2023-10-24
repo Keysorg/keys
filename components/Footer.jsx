@@ -50,6 +50,11 @@ const Footer = () => {
           Policies
         </a>
       </Typography>
+      <Typography variant="body2" color="text.secondary" sx={{fontSize: {xs: 10, sm: 12}}}>
+        <a color="inherit" href={footer?.support} target='_blank'>
+          Support
+        </a>
+      </Typography>
     </Box>
 
   )

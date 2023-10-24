@@ -26,5 +26,10 @@ export default {
             title: 'Legal',
             type: 'string'
         },
+        {
+            name: 'support',
+            title: 'Support',
+            type: 'string'
+        }
     ]
 }
