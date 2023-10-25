@@ -3,10 +3,10 @@ import Grid from '@mui/material/Grid';
 import { Box, IconButton, Link, Typography } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import PersonPinIcon from '@mui/icons-material/PersonPin';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useAuth0 } from "@auth0/auth0-react";
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import { client } from '@/lib/client';
 import { DataTable, SignOutButton } from '@/components';
@@ -43,7 +43,7 @@ const UserProfile = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
     const [value, setValue] = useState(0);
     const [transactions, setTransactions] = useState<any>([]);
-    const { logout } = useAuth0();
+    const { logout, loginWithRedirect } = useAuth0();
     const { removeItem } = useStorage()
 
     useEffect(() => {
@@ -87,6 +87,17 @@ const UserProfile = () => {
         },
     ];
 
+    const handleLogIn = (isAuthenticated: boolean) => {
+        if (isAuthenticated) {
+            // sign out
+            removeItem('isAuthenticated', 'session')
+            logout({ logoutParams: { returnTo: window.location.origin } })
+        } else {
+            // log in
+            loginWithRedirect()
+        }
+    }
+
     return (
         <Box
             sx={{
@@ -95,7 +106,7 @@ const UserProfile = () => {
         >
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    {user?.picture &&
+                    {user?.picture ?
                         <Box
                             component='img'
                             sx={{
@@ -108,14 +119,17 @@ const UserProfile = () => {
                             src={user?.picture}
                             alt="profile"
                         />
+                        :
+                        <AccountCircleIcon
+                            sx={{
+                                width: '150px',
+                                height: '150px;',
+                            }} />
                     }
                     <h2>{user?.name}</h2>
                     <Box
                         component='button'
-                        onClick={() => {
-                            removeItem('isAuthenticated', 'session')
-                            logout({ logoutParams: { returnTo: window.location.origin } })
-                        }}
+                        onClick={() => handleLogIn(isAuthenticated)}
                         sx={{
                             borderRadius: '15px',
                             padding: '10px 16px',
@@ -128,14 +142,14 @@ const UserProfile = () => {
                             backgroundColor: '#000',
                             m: 1,
 
-                            '&:hover' : {
+                            '&:hover': {
                                 color: '#000',
                                 backgroundColor: '#fff',
                                 border: '1px solid #000'
                             }
                         }}
                     >
-                        Sign Out
+                        {isAuthenticated ? 'Sign Out' : 'Sign In'}
                     </Box>
                 </Grid>
                 <Grid item xs={12}>

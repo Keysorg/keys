@@ -8,6 +8,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Box } from '@mui/material';
 import { useAuth0 } from "@auth0/auth0-react";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import { Cart, SignInButton, SignOutButton } from '.';
 import { useStateContext } from '@/context/StateContext';
@@ -91,7 +92,7 @@ const Navbar = () => {
             </button>
 
             <button type='button' className='cart-icon' onClick={handleClick}>
-              {isAuthenticated &&
+              {isAuthenticated ? user?.picture ?
                 <Box
                   component='img'
                   sx={{
@@ -104,6 +105,9 @@ const Navbar = () => {
                   src={user?.picture}
                   alt="profile"
                 />
+                :
+                <AccountCircleIcon fontSize='16'/>
+                : ''
               }
             </button>
             <Menu
