@@ -11,7 +11,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useStateContext } from '@/context/StateContext';
 import { client, urlFor } from '@/lib/client';
 import { AlertDialog } from '.';
-import { useStorage } from "@/lib/utils";
 
 const Cart = () => {
   const cartRef = useRef();
@@ -22,8 +21,6 @@ const Cart = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [transactionId, setTransactionId] = useState(0)
 
-  const { removeItem } = useStorage()
-
   const handleClickOpen = () => {
     setOpenDialog(true);
   };
@@ -31,7 +28,7 @@ const Cart = () => {
   const handleClose = (id) => {
     setOpenDialog(false);
     setShowCart(false)
-    if (id) {
+    if (id !== null) {
       router.push(`/transaction/${id}`)
     }
   };
