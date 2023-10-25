@@ -102,7 +102,6 @@ export const StateContext = ({ children }: any) => {
     }
 
     const resetStates = () => {
-        setShowCart(false)
         setCartItems([])
         setTotalPrice(0)
         setTotalQuantities(0)

@@ -35,7 +35,6 @@ const Cart = () => {
   let email = user?.email
   let amount = (totalPrice * 100).toFixed(2)
   let currency = "GHS"
-  let phone = "099897978"
   let publicKey = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY
   // Generate a unique reference
   let reference = `ref_${Math.floor(Math.random() * 1000000000)}`
@@ -44,9 +43,6 @@ const Cart = () => {
     email,
     amount,
     currency,
-    metadata: {
-      phone,
-    },
     publicKey,
     reference,
     text: "Pay Now",
